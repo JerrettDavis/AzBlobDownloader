@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+  pull_request:
+    branches: [ main ]
+    
+permissions:
+  statuses: write
+  checks: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Setup .NET Core 8.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Publish win-x64 Binary
+      run:  dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=True -p:TrimMode=Link -o .\AzBlobDownloader\out .\AzBlobDownloader\
+
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      if: success() 
+      with:
+        name: AzBlobDownloader
+        path: AzBlobDownloader/out/*.*

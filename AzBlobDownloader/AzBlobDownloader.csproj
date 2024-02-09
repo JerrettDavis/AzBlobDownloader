@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <Title>AzBlobDownloader</Title>
+        <Description>Azure Blob Storage file downloader.</Description>
+        <Copyright>© 2024 Jerrett Davis </Copyright>
+        <PackageProjectUrl>https://github.com/JerrettDavis/AzBlobDownloader</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/JerrettDavis/AzBlobDownloader/blob/main/LICENSE.md</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/JerrettDavis/AzBlobDownloader</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <TargetFramework>net8.0</TargetFramework>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+      <PackageReference Include="Colorful.Console" Version="1.2.15" />
+      <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+      <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    </ItemGroup>
+
+</Project>
